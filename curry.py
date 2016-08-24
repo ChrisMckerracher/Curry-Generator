@@ -1,5 +1,6 @@
 class curryable(type):
     #self note:bound methods dont get double instantiated unless manually set in instantiated class
+    #and even then, it doesn't bind in a desirable way(at least in this context)
     def __new__(mcs, **kwargs):
         return super().__new__(mcs, 'cFunction', (kwargs['base'],), {})
     def __init__(self, value=None, **kwargs):
