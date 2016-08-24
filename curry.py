@@ -1,4 +1,5 @@
 class curryable(type):
+    #self note:bound methods dont get double instantiated unless manually set in instantiated class
     def __new__(mcs, **kwargs):
         return super().__new__(mcs, 'cFunction', (kwargs['base'],), {})
     def __init__(self, value=None, **kwargs):
@@ -13,5 +14,12 @@ class curryable(type):
     
 b = curryable(base=int, func=(lambda self,y: self+y))
 a = b()
+a(1)(2)(3)
+#>> 6
 
-#bound methods dont get double instantiated
+b = curryable(base=list, func=(lambda self,y: self.append(y)))
+a = b()
+a(1)(2)(3)
+#>>[1,2,3]
+a(2)(3)(4)
+#>>[2,3,4]
