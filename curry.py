@@ -7,6 +7,8 @@ class curryable(type):
         self.func = kwargs['func']
         self.__call__ = self.call()
     def call(cls):
+        #the purpose of this function is that without it, new_class.__call__ is a bound
+        #method where the first variable(self) is bound to neww_class, as it is the instance of curryable
         def __call__(self, x):
             tmp=self.__class__(self.func(x) or self)
             a.__init__()
