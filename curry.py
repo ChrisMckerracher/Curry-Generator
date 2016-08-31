@@ -11,7 +11,7 @@ class curryable(type):
         #method where the first variable(self) is bound to neww_class, as it is the instance of curryable
         def __call__(self, x):
             tmp=self.__class__(self.func(x) or self)
-            a.__init__()
+            self.__init__()
             return tmp
         return __call__
     
